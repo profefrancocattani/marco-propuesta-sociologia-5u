@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planificación anual · Sociología 5º · Marco de la propuesta</title>
+<!--
+  SISTEMA PANAL — tokens
+  Miel      #F2B01E  acento (solo pantalla; en papel pasa a negro)
+  Cera      #F7EEDA  campo suave (solo pantalla; en papel pasa a gris 9%)
+  Carbón    #141414  texto, bloques oscuros
+  Papel     #FFFFFF  fondo de página
+  Ceniza    #6A6A6A  texto secundario
+  Línea     #D9D9D9  filetes
+  Display   Bebas Neue (mayúsculas, títulos)
+  Cuerpo    Barlow 400 / 500 / 600 / 700
+  Forma     hexágono de lados planos arriba y abajo; seis lados, seis autores
+  Regla     el amarillo nunca lleva información que no exista también en negro
+  IMÁGENES  los hexágonos punteados son espacios reservados. Se pegan en un
+            editor sobre el PDF, o se reemplaza el <svg class="ph"> por una
+            <img> recortada con clip-path .hex (ver clase .hex más abajo).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --miel:#F2B01E; --cera:#F7EEDA; --carbon:#141414; --papel:#FFFFFF;
+  --ceniza:#6A6A6A; --linea:#D9D9D9; --fondo:#E9E8E4;
+  --tx-miel:#141414;             /* texto sobre campo miel */
+  --display:"Bebas Neue","Oswald",Impact,sans-serif;
+  --cuerpo:"Barlow","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--fondo);color:var(--carbon);
+  font-family:var(--cuerpo);font-size:15px;line-height:1.5}
+
+/* ---------- navegación (solo pantalla) ---------- */
+.nav{position:sticky;top:0;z-index:40;background:var(--carbon);color:#fff}
+.nav .in{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:8px 14px}
+.nav .t{font-family:var(--display);font-size:1.15rem;letter-spacing:.04em;white-space:nowrap}
+.nav .t b{color:var(--miel);font-weight:400}
+.nav .chips{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+.nav .chips::-webkit-scrollbar{display:none}
+.nav .chips a{flex:0 0 auto;text-decoration:none;color:#fff;font-family:var(--cuerpo);
+  font-weight:600;font-size:.72rem;width:28px;height:28px;border-radius:14px;
+  display:grid;place-items:center;background:#333}
+.nav .chips a.on{background:var(--miel);color:var(--carbon)}
+.nav .chips a:focus-visible{outline:2px solid var(--miel);outline-offset:2px}
+.nav .pn{display:flex;gap:4px}
+.nav .pn button{background:#333;color:#fff;border:0;width:30px;height:28px;border-radius:14px;
+  font-size:.9rem;cursor:pointer}
+.nav .pn button:hover{background:var(--miel);color:var(--carbon)}
+
+/* ---------- página ---------- */
+.pag{background:var(--papel);max-width:820px;margin:22px auto;padding:44px 48px 40px;
+  min-height:1100px;position:relative;box-shadow:0 2px 14px rgba(0,0,0,.08);
+  display:flex;flex-direction:column}
+@media(max-width:640px){.pag{padding:30px 22px 34px;margin:12px 8px;min-height:0}}
+.folio{position:absolute;top:18px;right:48px;font-weight:600;font-size:.7rem;
+  letter-spacing:.12em;color:var(--ceniza)}
+@media(max-width:640px){.folio{right:22px}}
+.pie{margin-top:auto;padding-top:14px;border-top:1px solid var(--linea);
+  display:flex;justify-content:space-between;gap:12px;font-size:.68rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ceniza);font-weight:600}
+
+/* ---------- tipografía ---------- */
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:.92;margin:0;letter-spacing:.01em}
+h2{font-size:2.6rem;margin-bottom:.35em}
+h2 b{font-weight:400;color:var(--miel)}
+h3{font-size:1.45rem;margin:0 0 .3em}
+h4{font-family:var(--cuerpo);font-weight:700;font-size:.78rem;letter-spacing:.12em;
+  text-transform:uppercase;margin:0 0 .35em}
+p{margin:0 0 .8em}
+.lede{font-size:1.02rem;max-width:62ch;color:#333}
+.eti{font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ceniza);display:block;margin-bottom:.4rem}
+.sec{font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--carbon);display:inline-block;padding:3px 8px;background:var(--miel);
+  margin-bottom:.6rem}
+.chico{font-size:.86rem;color:#333}
+.mini{font-size:.78rem;color:var(--ceniza)}
+b{font-weight:600}
+
+/* ---------- hexágono ---------- */
+.hex{clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+.ph{display:block}
+.ph polygon{fill:var(--cera);stroke:var(--ceniza);stroke-width:1.2;stroke-dasharray:4 3}
+.ph text{font-family:var(--cuerpo);font-weight:700;font-size:7px;letter-spacing:.12em;
+  fill:var(--ceniza);text-anchor:middle}
+.ph text.s{font-weight:500;font-size:5.6px;letter-spacing:.06em}
+
+/* ---------- portada ---------- */
+.portada{justify-content:flex-start}
+.portada .top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.portada .marca{font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  max-width:24ch;line-height:1.4}
+.portada .marca .hexmini{width:26px;height:22px;background:var(--miel);display:block;margin-bottom:8px}
+.portada .cluster{position:relative;width:360px;height:330px;flex:0 0 auto}
+@media(max-width:640px){.portada .top{flex-direction:column}.portada .cluster{width:100%;height:auto}}
+.portada .cluster svg{position:absolute}
+.portada h1{font-size:5.6rem;line-height:.88;margin:36px 0 10px;max-width:9ch}
+.portada h1 b{font-weight:400;color:var(--miel)}
+@media(max-width:640px){.portada h1{font-size:3.8rem}}
+.portada .sub{font-family:var(--display);font-size:1.6rem;letter-spacing:.03em;margin-bottom:12px}
+.portada .tag{max-width:46ch;font-size:1.02rem;color:#333}
+.portada .barra{margin-top:auto;height:10px;background:var(--miel);width:62%}
+.portada .barra2{display:flex;justify-content:space-between;gap:12px;margin-top:10px;
+  font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--ceniza)}
+
+/* ---------- índice ---------- */
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+@media(max-width:640px){.dos{grid-template-columns:1fr;gap:20px}}
+.indice{background:var(--miel);color:var(--tx-miel);padding:26px 22px 22px;margin:-44px 0 0 -48px;
+  min-height:calc(100% + 44px)}
+@media(max-width:640px){.indice{margin:-30px 0 0 -22px;min-height:0}}
+.indice h2{font-size:2.2rem;margin-bottom:.5em}
+.indice ol{list-style:none;margin:0;padding:0}
+.indice li{display:flex;align-items:center;margin-bottom:7px}
+.indice li a{text-decoration:none;color:inherit;display:flex;align-items:center;width:100%}
+.indice li .n{background:var(--carbon);color:#fff;font-weight:700;font-size:.72rem;
+  width:34px;height:24px;display:grid;place-items:center;border-radius:12px 0 0 12px;flex:0 0 auto}
+.indice li .l{background:#fff;flex:1;padding:3px 10px;font-weight:600;font-size:.8rem;
+  letter-spacing:.04em;text-transform:uppercase;border-radius:0 12px 12px 0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------- bloques numerados ---------- */
+.num3{display:grid;gap:18px;margin:1.2rem 0}
+.num3 > div{display:grid;grid-template-columns:54px 1fr;gap:14px}
+.num3 .n{font-family:var(--display);font-size:2.6rem;line-height:.9;color:var(--miel)}
+.num3 h3{margin-bottom:.25em}
+.num3 p{margin:0 0 .4em;font-size:.93rem}
+.tira{background:var(--carbon);color:#fff;padding:14px 18px;margin-top:1.2rem;font-size:.9rem}
+.tira b{color:var(--miel);font-weight:600}
+
+/* ---------- preguntas ---------- */
+.hexq{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:1rem 0 1.2rem}
+@media(max-width:640px){.hexq{grid-template-columns:1fr}}
+.hexq .q{background:var(--miel);color:var(--tx-miel);padding:38px 34px;text-align:center;
+  font-family:var(--display);font-size:1.55rem;line-height:1.05;letter-spacing:.02em;
+  min-height:150px;display:grid;place-items:center}
+.hexq .q small{display:block;font-family:var(--cuerpo);font-weight:700;font-size:.66rem;
+  letter-spacing:.14em;margin-bottom:8px}
+.hexq ul{margin:.7rem 0 0;padding-left:1.1rem;font-size:.9rem}
+.hexq ul li{margin-bottom:.35rem}
+.dosideas{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:.6rem}
+@media(max-width:640px){.dosideas{grid-template-columns:1fr}}
+.dosideas div{border:1.5px solid var(--carbon);padding:12px 14px;font-size:.9rem}
+.dosideas h4{margin-bottom:.3em}
+
+/* ---------- autores ---------- */
+.aut{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px;margin-top:.8rem}
+@media(max-width:640px){.aut{grid-template-columns:1fr}}
+.aut > div{display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:start;
+  padding:10px 0;border-top:1px solid var(--linea)}
+.aut h3{font-size:1.45rem;margin-bottom:.1em}
+.aut .f{font-size:.72rem;color:var(--ceniza);font-weight:600;letter-spacing:.08em;margin-bottom:6px}
+.aut dl{margin:0;font-size:.82rem}
+.aut dt{font-weight:700;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ceniza);margin-top:4px}
+.aut dd{margin:0}
+.aut dd.c{font-weight:600}
+
+/* ---------- mapa ---------- */
+.mapa{border:1.5px solid var(--carbon);padding:10px 6px 4px;margin:.6rem 0}
+.mapa svg{width:100%;height:auto;display:block}
+.mapa .g line{stroke:var(--linea);stroke-width:1}
+.mapa .g .sep{stroke-dasharray:3 4}
+.mapa text{font-family:var(--cuerpo);fill:var(--carbon)}
+.mapa .cab{font-weight:700;font-size:11px;letter-spacing:.1em}
+.mapa .cab2{font-weight:500;font-size:9.5px;fill:var(--ceniza)}
+.mapa .fila{font-weight:700;font-size:9.5px;letter-spacing:.06em;fill:var(--ceniza)}
+.mapa .nodo circle{fill:var(--miel);stroke:var(--carbon);stroke-width:1.6}
+.mapa .nodo text{font-weight:700;font-size:12px}
+.mapa .cr path{fill:none;stroke:var(--carbon);stroke-width:1.5}
+.mapa .cr path.t{stroke-dasharray:5 4;stroke-width:1.3}
+.mapa .cr text{font-size:9.5px;font-weight:500;font-style:italic}
+.mapa .cr .c{font-style:normal;font-weight:700;font-size:8px;fill:var(--ceniza)}
+.mapa .eje path{stroke:var(--carbon);stroke-width:1.2;fill:none}
+.mapa .eje text{font-size:9px;font-weight:600;letter-spacing:.1em;fill:var(--ceniza)}
+.cruces{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;margin:.6rem 0 0;padding:0;
+  list-style:none;font-size:.8rem}
+@media(max-width:640px){.cruces{grid-template-columns:1fr}}
+.cruces li{display:grid;grid-template-columns:26px 1fr;gap:6px;align-items:baseline}
+.cruces li b{font-size:.68rem;letter-spacing:.08em}
+
+/* ---------- capítulos ---------- */
+.caps{display:grid;gap:12px;margin-top:.6rem}
+.cap{display:grid;grid-template-columns:64px 1fr;gap:14px;border:1.5px solid var(--carbon);padding:14px 16px 12px}
+.cap .n{font-family:var(--display);font-size:3rem;line-height:.85;color:var(--miel)}
+.cap h3{font-size:1.4rem;margin-bottom:.15em}
+.cap .a{font-weight:700;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ceniza);margin-bottom:8px}
+.cap dl{margin:0;display:grid;grid-template-columns:118px 1fr;gap:3px 12px;font-size:.82rem}
+@media(max-width:640px){.cap dl{grid-template-columns:1fr}}
+.cap dt{padding-top:1px}
+.cap dt{font-weight:700;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ceniza)}
+.cap dd{margin:0 0 4px}
+.cap .cl{grid-column:1/-1;margin-top:4px;padding-top:6px;border-top:1px solid var(--linea);
+  font-weight:600;font-size:.78rem}
+
+/* ---------- tablas ---------- */
+table{width:100%;border-collapse:collapse;font-size:.84rem;margin:.6rem 0 .9rem}
+th,td{border:1px solid var(--carbon);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--carbon);color:#fff;font-weight:700;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
+td.n{font-family:var(--display);font-size:1.3rem;text-align:center;width:52px;background:var(--cera)}
+
+/* ---------- evaluación ---------- */
+.verbos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:.5rem 0 1rem}
+@media(max-width:640px){.verbos{grid-template-columns:1fr 1fr}}
+.verbos div{background:var(--miel);color:var(--tx-miel);padding:10px 10px 9px}
+.verbos b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:400;line-height:1}
+.verbos span{font-size:.78rem;display:block;margin-top:3px}
+.formatos{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;font-size:.84rem}
+@media(max-width:640px){.formatos{grid-template-columns:1fr}}
+.formatos li{padding-left:12px;border-left:3px solid var(--miel)}
+
+/* ---------- avisos con casillas ---------- */
+.avisos{margin:.4rem 0 0;padding:0;list-style:none}
+.avisos li{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:start;
+  padding:9px 0;border-top:1px solid var(--linea);font-size:.86rem}
+.avisos li:last-child{border-bottom:1px solid var(--linea)}
+.avisos .n{background:var(--carbon);color:#fff;font-weight:700;font-size:.72rem;
+  width:26px;height:26px;border-radius:13px;display:grid;place-items:center}
+.avisos .sn{white-space:nowrap;font-size:.72rem;font-weight:600;letter-spacing:.06em;line-height:1.9}
+.cb{display:inline-block;width:12px;height:12px;border:1.5px solid var(--carbon);vertical-align:-2px;margin:0 4px 0 6px}
+
+/* ---------- Q&A ---------- */
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:.6rem}
+@media(max-width:640px){.qa{grid-template-columns:1fr}}
+.qa div{padding:14px 15px 12px;font-size:.84rem}
+.qa div.k{background:var(--carbon);color:#fff}
+.qa div.m{background:var(--miel);color:var(--tx-miel)}
+.qa .q{font-family:var(--display);font-size:1.28rem;line-height:1;letter-spacing:.02em;display:block;margin-bottom:8px}
+.qa .k .q{color:var(--miel)}
+.qa p{margin:0}
+
+/* ---------- control ---------- */
+.ctrl{margin:.4rem 0 1rem;padding:0;list-style:none}
+.ctrl li{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--linea);font-size:.86rem}
+.ctrl .n{background:var(--miel);color:var(--tx-miel);font-weight:700;font-size:.72rem;
+  width:26px;height:26px;border-radius:13px;display:grid;place-items:center}
+.ctrl b{display:block}
+.ctrl span{color:#333}
+.anexos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:.5rem}
+@media(max-width:640px){.anexos{grid-template-columns:1fr}}
+.anexos div{border:1.5px solid var(--carbon);padding:10px 12px;font-size:.8rem}
+.anexos b{display:block;font-family:var(--display);font-size:1.25rem;font-weight:400;line-height:1;margin-bottom:4px}
+
+/* ---------- aprobación ---------- */
+.firmas{margin-top:1rem;display:grid;gap:14px}
+.firmas .campo{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:end;font-size:.78rem;
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ceniza)}
+.firmas .ln{border-bottom:1.5px solid var(--carbon);height:30px}
+.firmas .ln.alto{height:88px;border:1.5px solid var(--carbon);background:var(--cera)}
+.contra{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.contra .hx{width:120px;height:104px;background:var(--miel);flex:0 0 auto}
+.contra h2{font-size:2.3rem;margin:0}
+
+/* ---------- impresión ---------- */
+@media print{
+  :root{--miel:#000;--cera:#EFEFEF;--tx-miel:#000;--fondo:#fff;--ceniza:#333;--linea:#999}
+  @page{size:A4;margin:12mm 12mm 12mm}
+  body{background:#fff;font-size:10.2pt;line-height:1.42}
+  .nav{display:none!important}
+  .pag{max-width:none;margin:0;padding:0;box-shadow:none;min-height:270mm;break-after:page}
+  .cap{padding:10px 12px 8px}
+  .caps{gap:8px}
+  .cap .n{font-size:2.4rem}
+  .lede{font-size:.98rem}
+  .pag:last-child{break-after:auto}
+  .folio{top:0;right:0}
+  .indice{margin:0;min-height:0;background:#fff;border:2px solid #000}
+  .indice li .l{border:1px solid #000;border-left:0}
+  .hexq .q,.verbos div,.qa div.m,.ctrl .n,.sec{background:#fff;color:#000;border:2px solid #000}
+  .sec{border-width:1.5px;padding:2px 7px}
+  .ctrl .n{border-width:1.5px}
+  .verbos div,.qa div.m{border-width:1.5px}
+  .qa div.k{background:#fff;color:#000;border:1.5px solid #000}
+  .qa .k .q{color:#000}
+  .tira{background:#fff;color:#000;border:1.5px solid #000}
+  .tira b{color:#000}
+  th{background:#EFEFEF;color:#000;border:1px solid #000}
+  td.n{background:#fff}
+  .portada .barra,.portada .marca .hexmini,.contra .hx{background:#000}
+  .formatos li{border-left-color:#000}
+  .mapa .nodo circle{fill:#fff}
+  .ph polygon{fill:#F4F4F4;stroke:#666}
+  .cap,.aut > div,.qa div,.avisos li,.ctrl li,.anexos div,.mapa,table,.dosideas div,.hexq > div{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Páginas">
+  <div class="in">
+    <span class="t">PLANIFI<b>CACIÓN</b></span>
+    <div class="chips" id="chips"></div>
+    <div class="pn"><button id="prev" aria-label="Página anterior">‹</button><button id="next" aria-label="Página siguiente">›</button></div>
+  </div>
+</nav>
+
+<!-- ================= 01 PORTADA ================= -->
+<section class="pag portada" id="p01">
+  <div class="top">
+    <div class="marca">
+      <span class="hexmini hex"></span>
+      Sociología<br>Quinto año<br>Orientación en Ciencias Sociales
+    </div>
+    <div class="cluster" aria-hidden="true">
+      <!-- IMAGEN 1 · hexágono grande · 78 mm de ancho -->
+      <svg class="ph" viewBox="0 0 100 87" style="left:70px;top:0;width:230px">
+        <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/>
+        <text x="50" y="42">IMAGEN 1</text><text class="s" x="50" y="50">78 mm</text>
+      </svg>
+      <!-- IMAGEN 2 · hexágono chico · 46 mm -->
+      <svg class="ph" viewBox="0 0 100 87" style="left:0;top:150px;width:135px">
+        <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/>
+        <text x="50" y="42">IMAGEN 2</text><text class="s" x="50" y="50">46 mm</text>
+      </svg>
+      <!-- IMAGEN 3 · hexágono chico · 46 mm -->
+      <svg class="ph" viewBox="0 0 100 87" style="left:225px;top:200px;width:135px">
+        <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/>
+        <text x="50" y="42">IMAGEN 3</text><text class="s" x="50" y="50">46 mm</text>
+      </svg>
+    </div>
+  </div>
+  <h1>Planifi<b>cación</b> anual</h1>
+  <div class="sub">Marco de la propuesta</div>
+  <p class="tag">Seis autores, tres capítulos y, al cierre de cada uno, un dato que produce el curso. Este documento explica el orden, la elección de los autores y el modo de trabajo, para que se pueda leer, discutir y aprobar.</p>
+  <div class="barra"></div>
+  <div class="barra2"><span>Documento para la conducción</span><span>Anexos: tres cuadernillos y un fichero</span></div>
+</section>
+
+<!-- ================= 02 ÍNDICE ================= -->
+<section class="pag" id="p02">
+  <span class="folio">02</span>
+  <div class="dos">
+    <div class="indice">
+      <h2>Índice</h2>
+      <ol>
+        <li><a href="#p03"><span class="n">03</span><span class="l">El enfoque en tres decisiones</span></a></li>
+        <li><a href="#p04"><span class="n">04</span><span class="l">Dos preguntas para todo el año</span></a></li>
+        <li><a href="#p05"><span class="n">05</span><span class="l">Los seis autores</span></a></li>
+        <li><a href="#p06"><span class="n">06</span><span class="l">Mapa del año</span></a></li>
+        <li><a href="#p07"><span class="n">07</span><span class="l">Los tres capítulos</span></a></li>
+        <li><a href="#p08"><span class="n">08</span><span class="l">Cronograma</span></a></li>
+        <li><a href="#p09"><span class="n">09</span><span class="l">Cómo se evalúa</span></a></li>
+        <li><a href="#p10"><span class="n">10</span><span class="l">Encuadre curricular y avisos</span></a></li>
+        <li><a href="#p11"><span class="n">11</span><span class="l">Articulación y cuidados</span></a></li>
+        <li><a href="#p12"><span class="n">12</span><span class="l">Lo que suele preguntar la conducción</span></a></li>
+        <li><a href="#p13"><span class="n">13</span><span class="l">Control, límite y anexos</span></a></li>
+        <li><a href="#p14"><span class="n">14</span><span class="l">Aprobación</span></a></li>
+      </ol>
+    </div>
+    <div>
+      <!-- IMAGEN 4 · 40 mm -->
+      <svg class="ph" viewBox="0 0 100 87" style="width:120px;margin:0 0 18px auto">
+        <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/>
+        <text x="50" y="42">IMAGEN 4</text><text class="s" x="50" y="50">40 mm</text>
+      </svg>
+      <h2>Para quien lee esto</h2>
+      <p class="chico">Este documento presenta la planificación anual de Sociología de quinto año en catorce páginas. Va dirigido a la conducción y funciona, para el docente, como marco general del año.</p>
+      <p class="chico">Se lee en diez minutos siguiendo tres páginas: el enfoque (03), el mapa del año (06) y el cronograma (08). El resto fundamenta cada decisión y anticipa las preguntas que suelen aparecer.</p>
+      <p class="chico">Lo que se pide es la aprobación de la propuesta y el registro de tres avisos previos (página 10). Los materiales de aula, tres cuadernillos y un fichero de autores, van aparte y se entregan al inicio de cada capítulo.</p>
+      <div class="tira" style="margin-top:1rem"><b>Lectura corta:</b> páginas 03, 06 y 08.</div>
+    </div>
+  </div>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Marco de la propuesta</span></div>
+</section>
+
+<!-- ================= 03 ENFOQUE ================= -->
+<section class="pag" id="p03">
+  <span class="folio">03</span>
+  <span class="sec">Cómo está armada</span>
+  <h2>El enfoque en <b>tres decisiones</b></h2>
+  <p class="lede">El Diseño Curricular prescribe los autores, las cuatro unidades y los seis conceptos estructurantes. Esta planificación los cubre íntegros. Lo que decide es el orden de entrada y el modo de trabajo, y esas dos cosas se explican acá.</p>
+
+  <div class="num3">
+    <div>
+      <span class="n">01</span>
+      <div>
+        <h3>Se entra por problemas, con los autores como herramientas</h3>
+        <p>Cada capítulo arranca con un problema cercano y con datos: por qué a algunos les va mejor en la escuela, el trabajo de plataformas en el conurbano oeste, la propia escuela como institución. Los autores entran cuando sirven para una pregunta sobre ese problema.</p>
+        <p>La cronología se conserva dentro de cada clase, con fecha y contexto a la vista. Lo que cambia es que no ordena el año: el año se ordena por la operación que se le pide al estudiante.</p>
+      </div>
+    </div>
+    <div>
+      <span class="n">02</span>
+      <div>
+        <h3>Cada capítulo cierra con un dato que produce el curso</h3>
+        <p>Una tabla propia con tasas, una entrevista propia desgrabada, un relevamiento propio de la institución. Las evaluaciones piden analizar ese material, que existe en un solo lugar: el aula.</p>
+        <p>Es la defensa más firme frente a la delegación en inteligencia artificial, y es también la más didáctica, porque obliga a aplicar un concepto en lugar de repetir su definición.</p>
+      </div>
+    </div>
+    <div>
+      <span class="n">03</span>
+      <div>
+        <h3>Dos marcos sobre un mismo material, sin elegir ganador</h3>
+        <p>Los autores se presentan en pares que discuten sobre el mismo objeto: Marx y Weber sobre una entrevista, Bourdieu y Foucault sobre el reglamento de convivencia. Se evalúa la capacidad de mostrar qué ve cada uno, y en qué se separan.</p>
+        <p>Ninguna consigna del año pide adherir a un autor. Todas piden aplicarlo con precisión y señalar su límite.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tira"><b>Orden de los capítulos, por operación intelectual creciente:</b> del caso a la tasa → dos explicaciones que compiten → objetivar la institución de la que uno forma parte.</div>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>El enfoque</span></div>
+</section>
+
+<!-- ================= 04 PREGUNTAS ================= -->
+<section class="pag" id="p04">
+  <span class="folio">04</span>
+  <span class="sec">Lo que atraviesa el año</span>
+  <h2>Dos preguntas para <b>todo el año</b></h2>
+  <p class="lede">Quedan escritas en el aula desde marzo. Con ellas se entra a cualquier clase del año, y de cada una se desprenden tres preguntas más específicas que funcionan como objetivos evaluables.</p>
+
+  <div class="hexq">
+    <div>
+      <div class="q hex"><span><small>PREGUNTA A</small>¿Qué explica esto que la explicación individual no explica?</span></div>
+      <ul>
+        <li>¿De dónde viene este dato y quién lo produjo?</li>
+        <li>¿Esto es un caso o es una tendencia?</li>
+        <li>¿Qué tendría que pasar para que mi explicación fuera falsa?</li>
+      </ul>
+    </div>
+    <div>
+      <div class="q hex"><span><small>PREGUNTA B</small>¿Quién puede hacer qué acá, y con qué recursos?</span></div>
+      <ul>
+        <li>¿Qué recursos hacen falta acá y quién los tiene?</li>
+        <li>¿Esto es así desde siempre o tiene fecha?</li>
+        <li>¿Dónde aparece resistencia y qué forma toma?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dosideas">
+    <div>
+      <h4>Tres conceptos que atraviesan a los seis</h4>
+      <p style="margin:0"><b>Relación, posición y reproducción.</b> Aparecen en los seis autores con nombres distintos. Cuando el curso los reconoce como el mismo problema, la materia se unifica.</p>
+    </div>
+    <div>
+      <h4>Dos ideas que el año tiene que dejar</h4>
+      <p style="margin:0">Lo social explica lo que la biografía individual no explica. Hay margen de acción, y es desigual. La segunda idea es la que evita que el año cierre en fatalismo.</p>
+    </div>
+  </div>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Preguntas del año</span></div>
+</section>
+
+<!-- ================= 05 AUTORES ================= -->
+<section class="pag" id="p05">
+  <span class="folio">05</span>
+  <span class="sec">Quiénes entran y para qué</span>
+  <h2>Los <b>seis</b> autores</h2>
+  <p class="lede">Se presentan como herramientas: cada uno entra cuando sirve para una pregunta y se lo evalúa por lo que deja ver. Los seis miran el mismo objeto y ninguno ve lo mismo.</p>
+
+  <div class="aut">
+    <div>
+      <svg class="ph" viewBox="0 0 100 87"><polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/><text x="50" y="42">IMAGEN 5</text><text class="s" x="50" y="50">retrato</text></svg>
+      <div><h3>Comte</h3><div class="f">1798–1857</div>
+        <dl><dt>Unidad de análisis</dt><dd>Los estados del espíritu humano</dd>
+        <dt>Pregunta</dt><dd>¿Qué mantiene unida a una sociedad?</dd>
+        <dt>Conceptos</dt><dd class="c">Orden, ciencia de lo social</dd></dl></div>
+    </div>
+    <div>
+      <svg class="ph" viewBox="0 0 100 87"><polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/><text x="50" y="42">IMAGEN 6</text><text class="s" x="50" y="50">retrato</text></svg>
+      <div><h3>Durkheim</h3><div class="f">1858–1917</div>
+        <dl><dt>Unidad de análisis</dt><dd>El hecho social</dd>
+        <dt>Pregunta</dt><dd>¿Qué explica la regularidad que la biografía individual no explica?</dd>
+        <dt>Conceptos</dt><dd class="c">Exterioridad, coerción, anomia</dd></dl></div>
+    </div>
+    <div>
+      <svg class="ph" viewBox="0 0 100 87"><polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/><text x="50" y="42">IMAGEN 7</text><text class="s" x="50" y="50">retrato</text></svg>
+      <div><h3>Marx</h3><div class="f">1818–1883</div>
+        <dl><dt>Unidad de análisis</dt><dd>La relación social de producción</dd>
+        <dt>Pregunta</dt><dd>¿Quién es dueño de qué y quién produce el excedente?</dd>
+        <dt>Conceptos</dt><dd class="c">Clase, plusvalía, alienación</dd></dl></div>
+    </div>
+    <div>
+      <svg class="ph" viewBox="0 0 100 87"><polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/><text x="50" y="42">IMAGEN 8</text><text class="s" x="50" y="50">retrato</text></svg>
+      <div><h3>Weber</h3><div class="f">1864–1920</div>
+        <dl><dt>Unidad de análisis</dt><dd>La acción social con sentido</dd>
+        <dt>Pregunta</dt><dd>¿Qué sentido le da el actor a lo que hace?</dd>
+        <dt>Conceptos</dt><dd class="c">Tipos de acción, tipo ideal, causalidad múltiple</dd></dl></div>
+    </div>
+    <div>
+      <svg class="ph" viewBox="0 0 100 87"><polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/><text x="50" y="42">IMAGEN 9</text><text class="s" x="50" y="50">retrato</text></svg>
+      <div><h3>Bourdieu</h3><div class="f">1930–2002</div>
+        <dl><dt>Unidad de análisis</dt><dd>Campo y posición</dd>
+        <dt>Pregunta</dt><dd>¿Qué capital exige esto y a quién le sale natural?</dd>
+        <dt>Conceptos</dt><dd class="c">Habitus, capital, violencia simbólica</dd></dl></div>
+    </div>
+    <div>
+      <svg class="ph" viewBox="0 0 100 87"><polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/><text x="50" y="42">IMAGEN 10</text><text class="s" x="50" y="50">retrato</text></svg>
+      <div><h3>Foucault</h3><div class="f">1926–1984</div>
+        <dl><dt>Unidad de análisis</dt><dd>Dispositivo, práctica</dd>
+        <dt>Pregunta</dt><dd>¿Qué produce esto sobre los cuerpos y dónde hay resistencia?</dd>
+        <dt>Conceptos</dt><dd class="c">Poder relacional, disciplina, examen</dd></dl></div>
+    </div>
+  </div>
+  <p class="mini" style="margin-top:.8rem">Cada autor tiene ficha propia en el fichero anexo, en versión docente y versión estudiante, con su fuente primaria, su error previsible y su límite.</p>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Los seis autores</span></div>
+</section>
+
+<!-- ================= 06 MAPA ================= -->
+<section class="pag" id="p06">
+  <span class="folio">06</span>
+  <span class="sec">Dónde se cruzan</span>
+  <h2>Mapa <b>del año</b></h2>
+  <p class="lede">Cada nombre está en su capítulo (columna, que es también el calendario) y en su fila según dónde ubica lo social. Las curvas son los siete cruces que se trabajan en clase: las continuas estructuran un capítulo, las punteadas lo atraviesan.</p>
+
+  <div class="mapa">
+    <svg viewBox="0 0 820 474" role="img" aria-label="Mapa del año: seis autores en tres capítulos y siete cruces">
+      <g class="g">
+        <line x1="150" y1="50" x2="150" y2="432"/>
+        <line class="sep" x1="350" y1="50" x2="350" y2="432"/>
+        <line class="sep" x1="550" y1="50" x2="550" y2="432"/>
+        <line x1="150" y1="50" x2="810" y2="50"/>
+        <line class="sep" x1="150" y1="175" x2="810" y2="175"/>
+        <line class="sep" x1="150" y1="285" x2="810" y2="285"/>
+      </g>
+      <text class="cab" x="250" y="30" text-anchor="middle">CAPÍTULO 1</text>
+      <text class="cab2" x="250" y="43" text-anchor="middle">1º bimestre · 9 clases</text>
+      <text class="cab" x="450" y="30" text-anchor="middle">CAPÍTULO 2</text>
+      <text class="cab2" x="450" y="43" text-anchor="middle">2º y 3º bimestre · 12 clases</text>
+      <text class="cab" x="680" y="30" text-anchor="middle">CAPÍTULO 3</text>
+      <text class="cab2" x="680" y="43" text-anchor="middle">4º bimestre · 13 clases</text>
+
+      <text class="fila" x="8" y="116">LO SOCIAL COMO</text>
+      <text class="fila" x="8" y="129">ORDEN EXTERIOR</text>
+      <text class="fila" x="8" y="226">LO SOCIAL</text>
+      <text class="fila" x="8" y="239">EN EL ACTOR</text>
+      <text class="fila" x="8" y="336">LO SOCIAL COMO</text>
+      <text class="fila" x="8" y="349">RELACIÓN ENTRE</text>
+      <text class="fila" x="8" y="362">POSICIONES</text>
+
+      <g class="cr">
+        <!-- C1 Comte–Durkheim -->
+        <path d="M215,120 Q250,82 285,120"/>
+        <text x="250" y="72" text-anchor="middle">¿cómo se conoce lo social?</text>
+        <text class="c" x="250" y="61" text-anchor="middle">C1</text>
+        <!-- C2 Marx–Weber -->
+        <path d="M450,340 Q405,285 450,230"/>
+        <text x="416" y="288" text-anchor="end">¿posición o sentido?</text>
+        <text class="c" x="416" y="300" text-anchor="end">C2</text>
+        <!-- C3 Bourdieu–Foucault -->
+        <path d="M650,230 Q695,285 650,340"/>
+        <text x="702" y="282" text-anchor="start">¿a quién le sale natural,</text>
+        <text x="702" y="294" text-anchor="start">o qué produce?</text>
+        <text class="c" x="702" y="306" text-anchor="start">C3</text>
+        <!-- C4 Durkheim–Bourdieu -->
+        <path class="t" d="M285,120 C420,120 520,230 650,230"/>
+        <text x="470" y="160" text-anchor="middle">¿dónde vive lo social?</text>
+        <text class="c" x="470" y="150" text-anchor="middle">C4</text>
+        <!-- C5 Marx–Foucault -->
+        <path class="t" d="M450,340 Q550,300 650,340"/>
+        <text x="550" y="314" text-anchor="middle">¿de dónde sale el poder?</text>
+        <text class="c" x="550" y="304" text-anchor="middle">C5</text>
+        <!-- C6 Weber–Bourdieu -->
+        <path class="t" d="M450,230 Q550,275 650,230"/>
+        <text x="550" y="266" text-anchor="middle">¿el actor elige?</text>
+        <text class="c" x="550" y="276" text-anchor="middle">C6</text>
+        <!-- C7 Durkheim–Foucault -->
+        <path class="t" d="M285,120 C160,445 560,440 650,340"/>
+        <text x="405" y="418" text-anchor="middle">¿qué hace una norma?</text>
+        <text class="c" x="405" y="429" text-anchor="middle">C7</text>
+      </g>
+
+      <g class="nodo">
+        <circle cx="215" cy="120" r="5"/><text x="215" y="139" text-anchor="middle">Comte</text>
+        <circle cx="285" cy="120" r="5"/><text x="296" y="113" text-anchor="start">Durkheim</text>
+        <circle cx="450" cy="230" r="5"/><text x="450" y="216" text-anchor="middle">Weber</text>
+        <circle cx="650" cy="230" r="5"/><text x="650" y="216" text-anchor="middle">Bourdieu</text>
+        <circle cx="450" cy="340" r="5"/><text x="450" y="360" text-anchor="middle">Marx</text>
+        <circle cx="650" cy="340" r="5"/><text x="650" y="360" text-anchor="middle">Foucault</text>
+      </g>
+
+      <g class="eje">
+        <path d="M150,449 H800 l-6,-4 M800,449 l-6,4"/>
+        <text x="152" y="466">MARZO</text>
+        <text x="450" y="466" text-anchor="middle">EL AÑO AVANZA</text>
+        <text x="798" y="466" text-anchor="end">NOVIEMBRE</text>
+      </g>
+    </svg>
+  </div>
+
+  <ul class="cruces">
+    <li><b>C1</b><span>Comte · Durkheim — ¿cómo se conoce lo social con método? Cap. 1.</span></li>
+    <li><b>C5</b><span>Marx · Foucault — ¿de dónde sale el poder? Caps. 2 → 3.</span></li>
+    <li><b>C2</b><span>Marx · Weber — ¿posición o sentido? Cap. 2.</span></li>
+    <li><b>C6</b><span>Weber · Bourdieu — ¿el actor elige? Caps. 2 → 3.</span></li>
+    <li><b>C3</b><span>Bourdieu · Foucault — ¿a quién le sale natural, o qué produce? Cap. 3.</span></li>
+    <li><b>C7</b><span>Durkheim · Foucault — ¿qué hace una norma? Caps. 1 → 3.</span></li>
+    <li><b>C4</b><span>Durkheim · Bourdieu — ¿dónde vive lo social? Caps. 1 → 3.</span></li>
+    <li><b>&nbsp;</b><span class="mini">Un cruce siempre une una clase temprana con una tardía; por eso el fichero de cruces se entrega en tres momentos.</span></li>
+  </ul>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Mapa del año</span></div>
+</section>
+
+<!-- ================= 07 CAPÍTULOS ================= -->
+<section class="pag" id="p07">
+  <span class="folio">07</span>
+  <span class="sec">Qué se hace en cada uno</span>
+  <h2>Los <b>tres</b> capítulos</h2>
+  <p class="lede">Ordenados por la operación intelectual que se le pide al estudiante, de la más básica a la más exigente. Cada uno tiene un caso, un dato propio y una evaluación que solo se puede resolver con ese dato.</p>
+
+  <div class="caps">
+    <div class="cap">
+      <span class="n">01</span>
+      <div>
+        <h3>Ver lo social donde el sentido común ve personas</h3>
+        <div class="a">Comte y Durkheim · Concepto umbral: explicación individual / explicación social</div>
+        <dl>
+          <dt>Caso</dt><dd>Por qué a algunos les va mejor en la escuela que a otros.</dd>
+          <dt>Dato del curso</dt><dd>Cuestionario anónimo y tabla de tasas, tabulada en clase.</dd>
+          <dt>Se evalúa</dt><dd>Pasar del caso a la tasa y volver al caso con otra pregunta.</dd>
+          <dt>Cuidado</dt><dd>Clase 7 con encuadre y alternativa completa preparada.</dd>
+          <div class="cl">9 clases · 1º bimestre · Hipótesis del curso archivadas en marzo y abiertas al cierre</div>
+        </dl>
+      </div>
+    </div>
+    <div class="cap">
+      <span class="n">02</span>
+      <div>
+        <h3>Orden, conflicto y sentido: dos explicaciones que compiten</h3>
+        <div class="a">Marx y Weber sobre el mismo objeto</div>
+        <dl>
+          <dt>Caso</dt><dd>El trabajo de plataformas de reparto en el conurbano oeste.</dd>
+          <dt>Dato del curso</dt><dd>Entrevista con guion propio y consentimiento, desgrabada.</dd>
+          <dt>Se evalúa</dt><dd>Dos marcos sobre el mismo fragmento, y dónde se separan.</dd>
+          <dt>Cuidado</dt><dd>Salida a entrevistas con nota a las familias; opción de otro entrevistado.</dd>
+          <div class="cl">12 clases · 2º y 3º bimestre · Cierra con <i>Germinal</i> como corroboración entre fuentes</div>
+        </dl>
+      </div>
+    </div>
+    <div class="cap">
+      <span class="n">03</span>
+      <div>
+        <h3>La escuela como objeto: reproducción, poder y margen de acción</h3>
+        <div class="a">Bourdieu y Foucault</div>
+        <dl>
+          <dt>Caso</dt><dd>La propia escuela: reglamento, espacio, tiempo y evaluación.</dd>
+          <dt>Dato del curso</dt><dd>Relevamiento institucional en cuatro grupos, con autorización.</dd>
+          <dt>Se evalúa</dt><dd>Describir un dispositivo, analizarlo con ambos y ubicar la resistencia.</dd>
+          <dt>Cuidado</dt><dd>Una clase completa dedicada a contrarrestar el fatalismo.</dd>
+          <div class="cl">13 clases · 4º bimestre · Proyecto grupal de cierre presentado ante la conducción, 3 semanas</div>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Los tres capítulos</span></div>
+</section>
+
+<!-- ================= 08 CRONOGRAMA ================= -->
+<section class="pag" id="p08">
+  <span class="folio">08</span>
+  <span class="sec">Cuándo</span>
+  <h2>Crono<b>grama</b></h2>
+  <p class="lede">Treinta y cuatro clases de contenido más tres semanas de proyecto, sobre un ciclo lectivo de 36 a 38 semanas efectivas. El margen restante se asigna desde marzo a actos, jornadas institucionales y recuperación.</p>
+
+  <table>
+    <thead><tr><th>Bimestre</th><th>Semanas</th><th>Contenido</th><th>Clases</th><th>Producto que queda</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1º</td><td>1 a 9</td><td>Capítulo 1: Comte y Durkheim</td><td>9</td><td>Tabla del curso con datos propios</td></tr>
+      <tr><td class="n">2º</td><td>10 a 16</td><td>Capítulo 2, clases 1 a 7</td><td>7</td><td>Cálculo de plusvalía, tipología de acción</td></tr>
+      <tr><td class="n">3º</td><td>17 a 22</td><td>Capítulo 2, clases 8 a 12</td><td>5</td><td>Desgrabaciones de entrevista</td></tr>
+      <tr><td class="n">4º</td><td>23 a 32</td><td>Capítulo 3, clases 1 a 13</td><td>13</td><td>Relevamiento institucional</td></tr>
+      <tr><td class="n">Cierre</td><td>33 a 35</td><td>Proyecto grupal y presentación</td><td>3 sem.</td><td>Propuestas ante la conducción</td></tr>
+    </tbody>
+  </table>
+
+  <div class="dosideas">
+    <div>
+      <h4>Según la carga horaria</h4>
+      <p style="margin:0">Con dos módulos semanales la secuencia entra cómoda y sobra tiempo para profundizar. Con un módulo entra justa: <i>Germinal</i> pasa a tarea domiciliaria con guía y se fusionan las clases 2 y 3 del capítulo 3.</p>
+    </div>
+    <div>
+      <h4>Lo que no se recorta</h4>
+      <p style="margin:0">La clase de tasas (cap. 1), la de plusvalía con números (cap. 2) y la clase contra el fatalismo (cap. 3). Sin la primera no hay operación cuantitativa; sin la segunda Marx queda en juicio moral; sin la tercera el año cierra desmovilizando al curso.</p>
+    </div>
+  </div>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Cronograma</span></div>
+</section>
+
+<!-- ================= 09 EVALUACIÓN ================= -->
+<section class="pag" id="p09">
+  <span class="folio">09</span>
+  <span class="sec">Con qué criterio</span>
+  <h2>Cómo se <b>evalúa</b></h2>
+  <p class="lede">La misma rúbrica en los tres capítulos, entregada al curso en marzo. El nivel 3 es la expectativa de la materia. El 4 se nombra como horizonte y no se penaliza no alcanzarlo.</p>
+
+  <table>
+    <thead><tr><th>Nivel</th><th>Descriptor</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Reproduce definiciones correctas de los conceptos, sin conectarlas con el material propio.</td></tr>
+      <tr><td class="n">2</td><td>Conecta un concepto con el material propio, con imprecisión en el uso técnico o en el dato.</td></tr>
+      <tr><td class="n">3</td><td>Aplica los conceptos con precisión al material propio y respalda la aplicación con evidencia concreta.</td></tr>
+      <tr><td class="n">4</td><td>Todo lo anterior, y además señala un límite: qué no explica el concepto, o qué queda afuera del dato.</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Cuatro verbos de consigna, con significado fijo</h4>
+  <div class="verbos">
+    <div><b>Describí</b><span>Decí qué hay, sin evaluarlo.</span></div>
+    <div><b>Explicá</b><span>Decí por qué pasa, con un mecanismo.</span></div>
+    <div><b>Analizá</b><span>Aplicá un concepto a un caso y mostrá qué revela.</span></div>
+    <div><b>Contrastá</b><span>Poné dos marcos sobre el mismo material y mostrá dónde se separan.</span></div>
+  </div>
+
+  <h4>Cuatro formatos de consigna</h4>
+  <ul class="formatos">
+    <li><b>Análisis del dato producido por el propio curso.</b> La tabla de tasas del capítulo 1.</li>
+    <li><b>Contraste de dos marcos sobre un mismo material.</b> Las dos columnas de los capítulos 2 y 3.</li>
+    <li><b>Corroboración entre fuentes de distinta naturaleza.</b> Ficción, texto teórico y entrevista propia.</li>
+    <li><b>Relevamiento institucional con protocolo.</b> El capítulo 3 y el proyecto final.</li>
+  </ul>
+  <div class="tira"><b>Una parte de cada evaluación se escribe en clase,</b> con el material a la vista y sin dispositivos. La bitácora deja registro del proceso y permite ver si hay un salto entre lo que la persona venía haciendo y lo que entrega.</div>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Evaluación</span></div>
+</section>
+
+<!-- ================= 10 ENCUADRE ================= -->
+<section class="pag" id="p10">
+  <span class="folio">10</span>
+  <span class="sec">Norma y cobertura</span>
+  <h2>Encuadre curricular <b>y avisos previos</b></h2>
+  <p class="lede">Sociología de 5º año, Orientación en Ciencias Sociales. Diseño Curricular de la DGCyE (2010), dentro del Marco General del Ciclo Superior aprobado por Resolución Nº 3828/09. El Decreto Nº 2299/11 establece que las instituciones ejecutan el diseño vigente contextualizado por el proyecto institucional; esta planificación usa ese margen para los casos y los datos, y conserva todos los contenidos prescriptos.</p>
+
+  <table>
+    <thead><tr><th>Capítulo</th><th>Unidades del Diseño</th><th>Conceptos estructurantes que cubre</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Unidad 1 y parte de la 2</td><td>Sujetos · Contexto sociocultural</td></tr>
+      <tr><td class="n">2</td><td>Resto de la 2 y unidad 3</td><td>Clase social · Alienación</td></tr>
+      <tr><td class="n">3</td><td>Unidad 4, con la 3</td><td>Relaciones de poder · Género</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Tres avisos previos a la conducción</h4>
+  <p class="chico">Ninguno de los tres se hace sin aviso. Esta hoja sirve como registro.</p>
+  <ul class="avisos">
+    <li><span class="n">1</span><div><b>Capítulo 1, clase 7.</b> <i>El suicidio</i> se trabaja como estructura de argumento con tasas agregadas, sin métodos ni casos, con aviso al equipo de orientación (Ley 27.130). Hay una alternativa completa preparada con tasas de repitencia y egreso.</div><span class="sn">Fecha ______<br>Autorizado <span class="cb"></span>Sí <span class="cb"></span>No</span></li>
+    <li><span class="n">2</span><div><b>Capítulo 2, clase 10.</b> Salida a entrevistas fuera del horario, en parejas, con nota a las familias y consentimiento del entrevistado. Sin preguntas de ingresos exactos, salud ni situación migratoria.</div><span class="sn">Fecha ______<br>Autorizado <span class="cb"></span>Sí <span class="cb"></span>No</span></li>
+    <li><span class="n">3</span><div><b>Capítulo 3, clase 10.</b> Relevamiento del reglamento, el espacio, el tiempo y la evaluación. Datos sobre normas y estructuras, no sobre personas. Se acuerda antes qué se releva y qué uso tienen los datos.</div><span class="sn">Fecha ______<br>Autorizado <span class="cb"></span>Sí <span class="cb"></span>No</span></li>
+  </ul>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Encuadre curricular</span></div>
+</section>
+
+<!-- ================= 11 ARTICULACIÓN ================= -->
+<section class="pag" id="p11">
+  <span class="folio">11</span>
+  <span class="sec">Con quién y con qué reglas</span>
+  <h2>Articulación <b>y cuidados</b></h2>
+  <p class="lede">Cuatro materias comparten autores o constructos con esta. El acuerdo se pone por escrito en una página firmada, en la carpeta de la materia, y se revisa una vez al año.</p>
+
+  <div class="num3" style="gap:12px">
+    <div><span class="n" style="font-size:1.7rem">PyC</span><div><h3>Política y Ciudadanía</h3><p>Toma el poder desde el Estado, los derechos y la ciudadanía. Sociología lo toma desde las relaciones cotidianas y las instituciones. Foucault puede aparecer en las dos, con entradas distintas.</p></div></div>
+    <div><span class="n" style="font-size:1.7rem">FIL</span><div><h3>Filosofía de 6º</h3><p>Marx aparece en las dos. Acá se trabaja el mecanismo (clase, plusvalía, relación de producción); en Filosofía, la antropología y la teoría de la historia.</p></div></div>
+    <div><span class="n" style="font-size:1.7rem">HIS</span><div><h3>Historia</h3><p>Los constructos son los mismos: sourcing, contextualización, corroboración, causalidad múltiple. Se nombran con el mismo vocabulario en las dos materias.</p></div></div>
+    <div><span class="n" style="font-size:1.7rem">MAT</span><div><h3>Matemática</h3><p>La clase de tasas usa porcentajes y lectura de gráficos. Un aviso previo permite saber con qué llega el curso.</p></div></div>
+  </div>
+
+  <h4 style="margin-top:.6rem">Cuidados que rigen todo el año</h4>
+  <ul class="formatos">
+    <li><b>Datos anónimos y agregados.</b> Ningún cruce que identifique a alguien. Las hojas se destruyen en clase. Se trabaja con la Ley 25.326 sobre la mesa.</li>
+    <li><b>Ninguna pregunta</b> sobre salud, ingresos exactos ni situación migratoria, en cuestionarios ni entrevistas.</li>
+    <li><b>El relevamiento del capítulo 3</b> es sobre normas y estructuras. No se releva conducta de docentes ni de estudiantes identificables.</li>
+    <li><b>Si aparece un problema serio,</b> se plantea por el canal institucional que corresponda y no entra al trabajo escrito.</li>
+  </ul>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Articulación</span></div>
+</section>
+
+<!-- ================= 12 CONDUCCIÓN ================= -->
+<section class="pag" id="p12">
+  <span class="folio">12</span>
+  <span class="sec">Anticipando la conversación</span>
+  <h2>Lo que suele preguntar <b>la conducción</b></h2>
+  <p class="lede">Seis preguntas que aparecen cuando se presenta una planificación así, y lo que la propuesta responde a cada una.</p>
+
+  <div class="qa">
+    <div class="k"><span class="q">¿Por qué no en orden cronológico?</span><p>Los seis autores están, y cada uno entra con fecha y contexto a la vista. El año se ordena por la operación que se le pide al estudiante, porque ese es el aprendizaje que se evalúa.</p></div>
+    <div class="m"><span class="q">¿Cubre el Diseño Curricular?</span><p>Los seis autores, las cuatro unidades y los seis conceptos estructurantes. El mapeo está en la página 10, y la planificación mantiene los autores que el Diseño prescribe y nombra.</p></div>
+    <div class="m"><span class="q">¿Analizar la propia escuela no la expone?</span><p>El objeto es cómo funciona la forma escolar y no si esta escuela hace bien o mal las cosas. Hay encuadre en la primera clase, autorización previa, regla de manejo del dato y presentación final ante la conducción.</p></div>
+    <div class="k"><span class="q">¿Qué pasa con la inteligencia artificial?</span><p>Las consignas piden analizar un material que produjo el curso y que existe solo en el aula. Además, una parte de cada evaluación se escribe en clase, sin dispositivos.</p></div>
+    <div class="k"><span class="q">¿Los autores llevan a una posición política?</span><p>Se enseña el mecanismo y no la conclusión política. Marx entra por un cálculo aritmético; Weber, por el sentido de las decisiones. El curso aplica los dos al mismo material y se evalúa que muestre qué ve cada uno, sin elegir.</p></div>
+    <div class="m"><span class="q">¿Y si no funciona?</span><p>Cada capítulo tiene un punto de control con un indicador observable en las producciones. Si el curso no logra la operación, hay una clase de recuperación antes de avanzar. Al cierre del año, cinco preguntas de revisión con evidencia.</p></div>
+  </div>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Preguntas de la conducción</span></div>
+</section>
+
+<!-- ================= 13 CONTROL ================= -->
+<section class="pag" id="p13">
+  <span class="folio">13</span>
+  <span class="sec">Cómo se sabe si funcionó</span>
+  <h2>Control, límite <b>y anexos</b></h2>
+  <p class="lede">Cinco preguntas para el cierre del año. Las cinco se responden con material que la secuencia ya produce; no hace falta ningún instrumento adicional.</p>
+
+  <ul class="ctrl">
+    <li><span class="n">1</span><div><b>¿El curso distingue explicación individual de explicación social?</b><span>Evidencia: las hipótesis del sobre de marzo comparadas con la reescritura al cierre del capítulo 1.</span></div></li>
+    <li><span class="n">2</span><div><b>¿Puede aplicar dos marcos sin fundirlos?</b><span>Evidencia: el punto de separación en las evaluaciones de los capítulos 2 y 3.</span></div></li>
+    <li><span class="n">3</span><div><b>¿Usa los conceptos con precisión o como etiquetas?</b><span>Evidencia: la distribución de niveles en las tres rúbricas. Si el nivel 1 concentra más de la mitad en las tres, el problema es de diseño.</span></div></li>
+    <li><span class="n">4</span><div><b>¿El año cerró con margen o con fatalismo?</b><span>Evidencia: la reescritura de la clase 12 del capítulo 3 y el tono de las propuestas del proyecto final.</span></div></li>
+    <li><span class="n">5</span><div><b>¿Las consignas resistieron la delegación?</b><span>Evidencia: la distancia entre lo que muestran las bitácoras y lo que se entregó.</span></div></li>
+  </ul>
+
+  <h4>Límite declarado</h4>
+  <p class="chico">Esta planificación es una hipótesis de diseño construida sobre fuentes verificadas. La investigación empírica sobre enseñanza de sociología en secundaria es escasa, y para el caso argentino casi inexistente: lo que hay a favor de la entrada por problemas son argumentos de principio, bien construidos, sin estudios con grupo de control. Por eso existen los puntos de control: la literatura no tiene la respuesta sobre si esto funciona con estos estudiantes en esta escuela. El curso sí la tiene, y la produce en cada evaluación.</p>
+
+  <h4>Materiales anexos</h4>
+  <div class="anexos">
+    <div><b>Tres cuadernillos</b>Uno por capítulo, con la versión impresa en blanco y negro y la proyectable. Se entregan al inicio de cada capítulo.</div>
+    <div><b>Fichero de autores y cruces</b>Seis fichas de autor y siete de cruce, en versión docente y versión estudiante.</div>
+    <div><b>Catálogo de errores</b>Los errores previsibles por autor, con su contramedida. Se entrega al curso antes de cada evaluación.</div>
+  </div>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Control y límite</span></div>
+</section>
+
+<!-- ================= 14 APROBACIÓN ================= -->
+<section class="pag" id="p14">
+  <span class="folio">14</span>
+  <span class="sec">Registro</span>
+  <h2>Aprobación <b>de la propuesta</b></h2>
+  <p class="lede">Esta hoja queda en la carpeta de la materia junto con el acuerdo de articulación y el registro de los tres avisos previos.</p>
+
+  <div class="firmas">
+    <div class="campo"><span>Fecha</span><div class="ln"></div></div>
+    <div class="campo"><span>Conducción<br><span style="font-weight:500;letter-spacing:.04em;text-transform:none">nombre y firma</span></span><div class="ln"></div></div>
+    <div class="campo"><span>Docente<br><span style="font-weight:500;letter-spacing:.04em;text-transform:none">nombre y firma</span></span><div class="ln"></div></div>
+    <div class="campo"><span>Observaciones</span><div class="ln alto"></div></div>
+    <div class="campo"><span>Avisos previos<br><span style="font-weight:500;letter-spacing:.04em;text-transform:none">registrados en la página 10</span></span><div style="font-size:.86rem;font-weight:500;letter-spacing:0;text-transform:none;color:var(--carbon)"><span class="cb"></span>Capítulo 1, clase 7 &nbsp; <span class="cb"></span>Capítulo 2, entrevistas &nbsp; <span class="cb"></span>Capítulo 3, relevamiento</div></div>
+  </div>
+
+  <div class="contra">
+    <div>
+      <span class="eti">Sociología · Quinto año</span>
+      <h2>Seis autores, <b>un dato</b> propio</h2>
+    </div>
+    <div class="hx hex"></div>
+  </div>
+  <div class="pie"><span>Planificación anual · Sociología</span><span>Aprobación</span></div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+  var pags = Array.prototype.slice.call(document.querySelectorAll('.pag'));
+  var chips = document.getElementById('chips');
+  pags.forEach(function(p,i){
+    var a = document.createElement('a');
+    a.href = '#' + p.id;
+    a.textContent = (i+1<10?'0':'') + (i+1);
+    a.setAttribute('aria-label','Página '+(i+1));
+    chips.appendChild(a);
+  });
+  var links = Array.prototype.slice.call(chips.querySelectorAll('a'));
+  var actual = 0;
+  function marcar(i){
+    actual = i;
+    links.forEach(function(l,j){ l.classList.toggle('on', j===i); });
+    var l = links[i]; if(l && l.scrollIntoView){ l.scrollIntoView({block:'nearest',inline:'center'}); }
+  }
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ marcar(pags.indexOf(e.target)); } });
+    },{rootMargin:'-40% 0px -55% 0px'});
+    pags.forEach(function(p){ obs.observe(p); });
+  }
+  function ir(i){
+    if(i<0||i>=pags.length) return;
+    pags[i].scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  document.getElementById('prev').addEventListener('click',function(){ ir(actual-1); });
+  document.getElementById('next').addEventListener('click',function(){ ir(actual+1); });
+  document.addEventListener('keydown',function(e){
+    if(e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'){ e.preventDefault(); ir(actual+1); }
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); ir(actual-1); }
+  });
+  marcar(0);
+})();
+</script>
+</body>
+</html>
