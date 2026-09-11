@@ -94,16 +94,18 @@ b{font-weight:600}
 
 /* ---------- portada ---------- */
 .portada{justify-content:flex-start}
-.portada .top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.portada .portada-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start;width:100%}
+@media(max-width:640px){.portada .portada-grid{grid-template-columns:1fr}}
+.portada .portada-copy{min-width:0}
 .portada .marca{font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
   max-width:24ch;line-height:1.4}
 .portada .marca .hexmini{width:26px;height:22px;background:var(--miel);display:block;margin-bottom:8px}
-.portada .cluster{position:relative;width:360px;height:330px;flex:0 0 auto}
-@media(max-width:640px){.portada .top{flex-direction:column}.portada .cluster{width:100%;height:auto}}
+.portada .cluster{position:relative;width:340px;height:310px;justify-self:end;flex:0 0 auto;overflow:hidden}
+@media(max-width:640px){.portada .cluster{width:100%;max-width:340px;height:280px;justify-self:start;margin:8px 0 4px}}
 .portada .cluster svg{position:absolute}
-.portada h1{font-size:5.6rem;line-height:.88;margin:36px 0 10px;max-width:9ch}
+.portada h1{font-size:5.2rem;line-height:.88;margin:28px 0 10px;max-width:9ch}
 .portada h1 b{font-weight:400;color:var(--miel)}
-@media(max-width:640px){.portada h1{font-size:3.8rem}}
+@media(max-width:640px){.portada h1{font-size:3.8rem;margin-top:16px}}
 .portada .sub{font-family:var(--display);font-size:1.6rem;letter-spacing:.03em;margin-bottom:12px}
 .portada .tag{max-width:46ch;font-size:1.02rem;color:#333}
 .portada .barra{margin-top:auto;height:10px;background:var(--miel);width:62%}
@@ -153,8 +155,9 @@ b{font-weight:600}
 /* ---------- autores ---------- */
 .aut{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px;margin-top:.8rem}
 @media(max-width:640px){.aut{grid-template-columns:1fr}}
-.aut > div{display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:start;
+.aut > div{display:grid;grid-template-columns:78px minmax(0,1fr);gap:12px;align-items:start;
   padding:10px 0;border-top:1px solid var(--linea)}
+.aut .ph{width:78px;height:auto;max-width:100%;display:block}
 .aut h3{font-size:1.45rem;margin-bottom:.1em}
 .aut .f{font-size:.72rem;color:var(--ceniza);font-weight:600;letter-spacing:.08em;margin-bottom:6px}
 .aut dl{margin:0;font-size:.82rem}
@@ -200,10 +203,18 @@ b{font-weight:600}
   font-weight:600;font-size:.78rem}
 
 /* ---------- tablas ---------- */
-table{width:100%;border-collapse:collapse;font-size:.84rem;margin:.6rem 0 .9rem}
-th,td{border:1px solid var(--carbon);padding:6px 9px;text-align:left;vertical-align:top}
-th{background:var(--carbon);color:#fff;font-weight:700;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
+table{width:100%;max-width:100%;table-layout:fixed;border-collapse:collapse;border-spacing:0;
+  font-size:.84rem;margin:.6rem 0 .9rem;box-sizing:border-box}
+th,td{border:1px solid var(--carbon);padding:6px 9px;text-align:left;vertical-align:top;box-sizing:border-box;
+  overflow-wrap:anywhere;word-break:break-word}
+th{background:var(--carbon);color:#fff;font-weight:700;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase}
 td.n{font-family:var(--display);font-size:1.3rem;text-align:center;width:52px;background:var(--cera)}
+/* cronograma: anchos estables para alinear encabezado y cuerpo */
+#p08 table th:nth-child(1),#p08 table td:nth-child(1){width:12%}
+#p08 table th:nth-child(2),#p08 table td:nth-child(2){width:14%}
+#p08 table th:nth-child(3),#p08 table td:nth-child(3){width:30%}
+#p08 table th:nth-child(4),#p08 table td:nth-child(4){width:12%}
+#p08 table th:nth-child(5),#p08 table td:nth-child(5){width:32%}
 
 /* ---------- evaluación ---------- */
 .verbos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:.5rem 0 1rem}
@@ -304,32 +315,34 @@ td.n{font-family:var(--display);font-size:1.3rem;text-align:center;width:52px;ba
 
 <!-- ================= 01 PORTADA ================= -->
 <section class="pag portada" id="p01">
-  <div class="top">
-    <div class="marca">
-      <span class="hexmini hex"></span>
-      Sociología<br>Quinto año<br>Orientación en Ciencias Sociales
+  <div class="portada-grid">
+    <div class="portada-copy">
+      <div class="marca">
+        <span class="hexmini hex"></span>
+        Sociología<br>Quinto año<br>Orientación en Ciencias Sociales
+      </div>
+      <h1>Planifi<b>cación</b> anual</h1>
+      <div class="sub">Marco de la propuesta</div>
+      <p class="tag">Seis autores, tres capítulos y, al cierre de cada uno, un dato que produce el curso. Este documento explica el orden, la elección de los autores y el modo de trabajo, para que se pueda leer, discutir y aprobar.</p>
     </div>
     <div class="cluster" aria-hidden="true">
       <!-- IMAGEN 1 · hexágono grande · 78 mm de ancho -->
-      <svg class="ph" viewBox="0 0 100 87" style="left:70px;top:0;width:230px">
+      <svg class="ph" viewBox="0 0 100 87" style="left:55px;top:0;width:220px">
         <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/>
         <text x="50" y="42">IMAGEN 1</text><text class="s" x="50" y="50">78 mm</text>
       </svg>
       <!-- IMAGEN 2 · hexágono chico · 46 mm -->
-      <svg class="ph" viewBox="0 0 100 87" style="left:0;top:150px;width:135px">
+      <svg class="ph" viewBox="0 0 100 87" style="left:0;top:145px;width:130px">
         <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/>
         <text x="50" y="42">IMAGEN 2</text><text class="s" x="50" y="50">46 mm</text>
       </svg>
       <!-- IMAGEN 3 · hexágono chico · 46 mm -->
-      <svg class="ph" viewBox="0 0 100 87" style="left:225px;top:200px;width:135px">
+      <svg class="ph" viewBox="0 0 100 87" style="left:200px;top:185px;width:130px">
         <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3"/>
         <text x="50" y="42">IMAGEN 3</text><text class="s" x="50" y="50">46 mm</text>
       </svg>
     </div>
   </div>
-  <h1>Planifi<b>cación</b> anual</h1>
-  <div class="sub">Marco de la propuesta</div>
-  <p class="tag">Seis autores, tres capítulos y, al cierre de cada uno, un dato que produce el curso. Este documento explica el orden, la elección de los autores y el modo de trabajo, para que se pueda leer, discutir y aprobar.</p>
   <div class="barra"></div>
   <div class="barra2"><span>Documento para la conducción</span><span>Anexos: tres cuadernillos y un fichero</span></div>
 </section>
